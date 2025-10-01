@@ -13,6 +13,10 @@ const BookList = () => {
 
     const [books, setBooks] = useState(listOfBooks)
 
+    const handleDelete = (clickedBook) =>{
+        setBooks(books.filter((book) => (book !== clickedBook)))
+    }
+
     return(
         <div className={styles.wrapper}>
 
@@ -29,10 +33,10 @@ const BookList = () => {
 	    	<h2 className={styles.title}>Books to Read</h2>
             <ul>
                 {
-                    listOfBooks.map((book, index)=>(
+                    books.map((book, index)=>(
                         <li key={index}>
                             <span className={styles.name}>{book}</span>
-                            <span className={styles.delete}>delete</span>
+                            <span className={styles.delete} onClick={() => handleDelete(book)}>delete</span>
                         </li>
                     
                     ))
